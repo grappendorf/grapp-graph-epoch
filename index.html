@@ -44,10 +44,6 @@
     </grapp-graph-epoch-series>
   </grapp-graph-epoch>
 
-  <div>
-    Enter a new value: <input id="value" type="text">
-  </div>
-
   <grapp-graph-epoch id="timegraph" type="time.bar" axis="left,top">
     <grapp-graph-epoch-series label="Time Series"
       data="[ {'time': 1370044800, 'y': 1}, {'time': 1370044801, 'y': 10} ]">
@@ -55,10 +51,13 @@
   </grapp-graph-epoch>
 
   <script>
-    document.querySelector('#value').addEventListener('keypress', function(e) {
-      if (e.keyCode == 13) {
-        document.querySelector('#timegraph').push((new Date()).getTime()/1000, parseFloat(e.target.value));
-      }
+    updateTimeSeries = function() {
+      document.querySelector('#timegraph').push((new Date()).getTime()/1000,
+        Math.random()*100);
+      setTimeout(updateTimeSeries, 2000);
+    }
+    window.addEventListener('polymer-ready', function() {
+      updateTimeSeries();
     });
   </script>
 
