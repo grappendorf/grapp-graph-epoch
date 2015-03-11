@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <title>grapp-graph-epoch web component</title>
+
+  <script src="lib/webcomponentsjs/webcomponents.min.js"></script>
+  <link href="grapp-graph-epoch.html" rel="import">
+
+</head>
+
+<body>
+
+  <h1>grapp-graph-epoch web component</h1>
+
+  <h2>A web component that displays Epoch graphs</h2>
+
+  <p>
+    <a href="test/index.html">Click here to run the tests...</a>
+  </p>
+  <p>
+    <a href="README.md">Click here to read the documentation...</a>
+  </p>
+  <p>
+    <a href="CHANGELOG.md">Click here to read the changelog...</a>
+  </p>
+
+  <h2>Demo</h2>
+
+  <style>
+    grapp-graph-epoch /deep/ #graph {
+      width: 800px;
+      height: 300px;
+    }
+  </style>
+
+  <grapp-graph-epoch type="area" axis="['left', 'bottom', 'right']">
+    <grapp-graph-epoch-series label="Layer 1"
+      data="[ {'x': 0, 'y': 0}, {'x': 1, 'y': 1}, {'x': 2, 'y': 2} ]">
+    </grapp-graph-epoch-series>
+    <grapp-graph-epoch-series label="Layer 2"
+      data="[ {'x': 0, 'y': 0}, {'x': 1, 'y': 1}, {'x': 2, 'y': 4} ]">
+    </grapp-graph-epoch-series>
+  </grapp-graph-epoch>
+
+  <div>
+    Enter a new value: <input id="value" type="text">
+  </div>
+
+  <grapp-graph-epoch id="timegraph" type="time.bar" axis="['left', 'bottom']">
+    <grapp-graph-epoch-series label="Time Series"
+      data="[ {'time': 1370044800, 'y': 1}, {'time': 1370044801, 'y': 10} ]">
+    </grapp-graph-epoch-series>
+  </grapp-graph-epoch>
+
+  <script>
+    document.querySelector('#value').addEventListener('keypress', function(e) {
+      if (e.keyCode == 13) {
+        document.querySelector('#timegraph').push((new Date()).getTime()/1000, parseFloat(e.target.value));
+      }
+    });
+  </script>
+
+  <script src="//localhost:35729/livereload.js"></script>
+
+</body>

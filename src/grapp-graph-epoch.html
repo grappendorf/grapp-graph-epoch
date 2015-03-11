@@ -1,0 +1,30 @@
+ <!-- build:process -->
+<!--
+<%= copyright %>
+Element: <%= pkg.name %>
+Version: <%= pkg.version %>
+Description: <%= pkg.description %>
+-->
+<!-- /build -->
+
+<link href="../polymer/polymer.html" rel="import">
+<link href="grapp-graph-epoch-series.html" rel="import">
+
+<polymer-element name="grapp-graph-epoch" attributes="type axis">
+
+  <template>
+
+    <link rel="stylesheet" type="text/css" href="../epoch/epoch.min.css">
+
+    <div id="graph" class="epoch"></div>
+
+  </template>
+
+  <script src="../d3/d3.min.js"></script>
+  <script src="../epoch/epoch.min.js"></script>
+
+  <!-- build:script inline dist_epoch -->
+  <script src="grapp-graph-epoch.js"></script>
+  <!-- /build -->
+
+</polymer-element>

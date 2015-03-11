@@ -1,0 +1,21 @@
+{
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/grappendorf/grapp-graph-epoch.git"
+  },
+  "devDependencies": {
+    "bower": "latest",
+    "grunt": "latest",
+    "grunt-bump": "latest",
+    "grunt-cli": "latest",
+    "grunt-coffeelint": "latest",
+    "grunt-contrib-clean": "latest",
+    "grunt-contrib-connect": "latest",
+    "grunt-contrib-coffee": "latest",
+    "grunt-contrib-copy": "latest",
+    "grunt-contrib-less": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-conventional-changelog": "latest",
+    "grunt-html-build": "latest"
+  }
+}
