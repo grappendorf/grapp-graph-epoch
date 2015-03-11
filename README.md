@@ -15,8 +15,8 @@ Attributes
 
 * **axis**
 
-  - *type:* (left,bottom,right)*
-  - *default:* "left,button"
+  - *type:* (left|bottom|right|top)*
+  - *default:* "left,buttom"
 
   Specify which axes should be printed.
 

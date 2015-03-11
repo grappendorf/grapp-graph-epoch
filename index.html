@@ -35,7 +35,7 @@
     }
   </style>
 
-  <grapp-graph-epoch type="area" axis="['left', 'bottom', 'right']">
+  <grapp-graph-epoch type="area" axis="left,right,bottom">
     <grapp-graph-epoch-series label="Layer 1"
       data="[ {'x': 0, 'y': 0}, {'x': 1, 'y': 1}, {'x': 2, 'y': 2} ]">
     </grapp-graph-epoch-series>
@@ -48,7 +48,7 @@
     Enter a new value: <input id="value" type="text">
   </div>
 
-  <grapp-graph-epoch id="timegraph" type="time.bar" axis="['left', 'bottom']">
+  <grapp-graph-epoch id="timegraph" type="time.bar" axis="left,top">
     <grapp-graph-epoch-series label="Time Series"
       data="[ {'time': 1370044800, 'y': 1}, {'time': 1370044801, 'y': 10} ]">
     </grapp-graph-epoch-series>
