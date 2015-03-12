@@ -1,3 +1,12 @@
+<a name="0.0.5"></a>
+### 0.0.5 (2015-03-12)
+
+
+#### Features
+
+* Add a clear method which clears a time series graph ([d4ee2be4](http://github.com/grappendorf/grapp-graph-epoch/commit/d4ee2be4d5b13cb6e730570f3d04694c26b415b5))
+
+
 <a name="0.0.4"></a>
 ### 0.0.4 (2015-03-12)
 
