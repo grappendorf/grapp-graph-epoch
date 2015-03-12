@@ -4,7 +4,7 @@ Polymer 'grapp-graph-epoch',
     @axis = []
     @theme = 'default'
 
-  ready: ->
+  domReady: ->
     @data = (@createData(s) for s in @querySelectorAll 'grapp-graph-epoch-series')
     @draw()
 
@@ -12,7 +12,8 @@ Polymer 'grapp-graph-epoch',
     { label: series.label, values: series.data }
 
   axisChanged: ->
-    @graph.option 'axis', @axis
+    if @graph
+      @graph.option 'axis', @axis
 
   draw: ->
     @$.graph.innerHTML = ''

@@ -35,7 +35,7 @@ Description: A web component that displays Epoch graphs
       this.axis = [];
       return this.theme = 'default';
     },
-    ready: function() {
+    domReady: function() {
       var s;
       this.data = (function() {
         var i, len, ref, results;
@@ -56,7 +56,9 @@ Description: A web component that displays Epoch graphs
       };
     },
     axisChanged: function() {
-      return this.graph.option('axis', this.axis);
+      if (this.graph) {
+        return this.graph.option('axis', this.axis);
+      }
     },
     draw: function() {
       var options;
