@@ -10,13 +10,15 @@ Description: <%= pkg.description %>
 <link href="../polymer/polymer.html" rel="import">
 <link href="grapp-graph-epoch-series.html" rel="import">
 
-<polymer-element name="grapp-graph-epoch" attributes="type axis">
+<polymer-element name="grapp-graph-epoch" attributes="type axis theme">
 
   <template>
 
     <link rel="stylesheet" type="text/css" href="../epoch/epoch.min.css">
 
-    <div id="graph" class="epoch"></div>
+    <div class="epoch-theme-{{theme}}">
+      <div id="graph" class="epoch category10"></div>
+    </div>
 
   </template>
 

@@ -2,6 +2,7 @@ Polymer 'grapp-graph-epoch',
 
   created: ->
     @axis = []
+    @theme = 'default'
 
   ready: ->
     @data = (@createData(s) for s in @querySelectorAll 'grapp-graph-epoch-series')
@@ -11,7 +12,7 @@ Polymer 'grapp-graph-epoch',
     { label: series.label, values: series.data }
 
   axisChanged: ->
-    @draw()
+    @graph.option 'axis', @axis
 
   draw: ->
     @$.graph.innerHTML = ''
@@ -22,5 +23,8 @@ Polymer 'grapp-graph-epoch',
     @graph = new Epoch._typeMap[@type] options
     @graph.draw()
 
-  push: (time, value) ->
-    @graph.push [{time: time, y: value}]
+  push: (args...) ->
+    # if typeof(args[0]) == 'number'
+      # @graph.push [{time: args[0], y: args[1]}]
+    # else
+      # @graph.push ({time: d[0], y: d[1]} for d in args[0])

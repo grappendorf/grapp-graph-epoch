@@ -12,13 +12,15 @@ Description: A web component that displays Epoch graphs
 <link href="../polymer/polymer.html" rel="import">
 <link href="grapp-graph-epoch-series.html" rel="import">
 
-<polymer-element name="grapp-graph-epoch" attributes="type axis">
+<polymer-element name="grapp-graph-epoch" attributes="type axis theme">
 
   <template>
 
     <link rel="stylesheet" type="text/css" href="../epoch/epoch.min.css">
 
-    <div id="graph" class="epoch"></div>
+    <div class="epoch-theme-{{theme}}">
+      <div id="graph" class="epoch category10"></div>
+    </div>
 
   </template>
 
@@ -26,9 +28,12 @@ Description: A web component that displays Epoch graphs
   <script src="../epoch/epoch.min.js"></script>
 
 <script type="text/javascript">(function() {
+  var slice = [].slice;
+
   Polymer('grapp-graph-epoch', {
     created: function() {
-      return this.axis = [];
+      this.axis = [];
+      return this.theme = 'default';
     },
     ready: function() {
       var s;
@@ -51,7 +56,7 @@ Description: A web component that displays Epoch graphs
       };
     },
     axisChanged: function() {
-      return this.draw();
+      return this.graph.option('axis', this.axis);
     },
     draw: function() {
       var options;
@@ -64,13 +69,9 @@ Description: A web component that displays Epoch graphs
       this.graph = new Epoch._typeMap[this.type](options);
       return this.graph.draw();
     },
-    push: function(time, value) {
-      return this.graph.push([
-        {
-          time: time,
-          y: value
-        }
-      ]);
+    push: function() {
+      var args;
+      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
     }
   });
 

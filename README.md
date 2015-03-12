@@ -3,6 +3,7 @@ grapp-graph-epoch
 
 A web component that displays [Epoch graphs](https://github.com/fastly/epoch).
 
+
 Attributes
 ----------
 
@@ -16,9 +17,17 @@ Attributes
 * **axis**
 
   - *type:* (left|bottom|right|top)*
-  - *default:* "left,buttom"
+  - *default:* left,buttom
 
   Specify which axes should be printed.
+
+* **theme**
+
+  - *type:* default|dark
+  - *default:* default
+
+  Select one of the two Epoch CSS themes.
+
 
 Methods
 -------
