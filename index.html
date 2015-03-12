@@ -52,13 +52,12 @@
   <script>
     var t = document.querySelector('template');
     t.domReady = function() {
-      t.updateTimeSeries();
+      setInterval(t.updateTimeSeries, 2000);
     }
     t.updateTimeSeries = function() {
       if (t.$) {
         t.$.timegraph.push((new Date()).getTime()/1000, Math.random()*100);
       }
-      setTimeout(t.updateTimeSeries, 2000);
     };
     t.clear = function() {
       t.$.timegraph.clear();
