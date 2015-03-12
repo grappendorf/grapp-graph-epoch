@@ -1,3 +1,12 @@
+<a name="0.0.4"></a>
+### 0.0.4 (2015-03-12)
+
+
+#### Bug Fixes
+
+* Set width and high via options object, fix real time data push ([f1b15338](http://github.com/grappendorf/grapp-graph-epoch/commit/f1b153388db6b7c6a1f938f976b86e8a670b1214))
+
+
 <a name="0.0.3"></a>
 ### 0.0.3 (2015-03-12)
 
