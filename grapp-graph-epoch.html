@@ -95,6 +95,20 @@ Description: A web component that displays Epoch graphs
           return results;
         })());
       }
+    },
+    clear: function() {
+      var i, len, ref, series;
+      ref = this.data;
+      for (i = 0, len = ref.length; i < len; i++) {
+        series = ref[i];
+        series.values = [
+          {
+            time: 0,
+            y: 0
+          }
+        ];
+      }
+      return this.draw();
     }
   });
 

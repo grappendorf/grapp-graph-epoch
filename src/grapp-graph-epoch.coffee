@@ -30,3 +30,8 @@ Polymer 'grapp-graph-epoch',
       @graph.push [{time: args[0], y: args[1]}]
     else
       @graph.push ({time: d[0], y: d[1]} for d in args)
+
+  clear: ->
+    for series in @data
+      series.values = [time: 0, y: 0]
+    @draw()

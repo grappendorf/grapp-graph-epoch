@@ -37,6 +37,8 @@
     </grapp-graph-epoch-series>
   </grapp-graph-epoch>
 
+  <input id="clear" type="button" value="Clear">
+
   <grapp-graph-epoch id="timegraph" type="time.bar" axis="left,bottom" width="800" height="300">
     <grapp-graph-epoch-series label="Time Series 1"
       data="[ {'time': 1370044800, 'y': 1}, {'time': 1370044801, 'y': 10} ]">
@@ -48,6 +50,9 @@
       document.querySelector('#timegraph').push((new Date()).getTime()/1000, Math.random()*100);
       setTimeout(updateTimeSeries, 2000);
     }
+    document.querySelector('#clear').addEventListener('click', function() {
+      document.querySelector('#timegraph').clear();
+    });
     window.addEventListener('polymer-ready', function() {
       updateTimeSeries();
     });

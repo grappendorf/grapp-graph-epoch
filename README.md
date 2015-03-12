@@ -50,6 +50,10 @@ Methods
 
   Push a new value into a data series.
 
+* **clear()**
+
+  Clear a time series graph.
+
 
 grapp-graph-epoch-series
 ========================
