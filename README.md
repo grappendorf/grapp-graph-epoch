@@ -28,6 +28,13 @@ Attributes
 
   Select one of the two Epoch CSS themes.
 
+* **category**
+
+  - *type:* category10|category20|category20b|category20c
+  - *default:* category10
+
+  Select one of the four D3 categorical color sets.
+
 * **width**
 
   - *type:* Width in pixel

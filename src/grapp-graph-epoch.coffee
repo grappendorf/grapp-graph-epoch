@@ -3,6 +3,7 @@ Polymer 'grapp-graph-epoch',
   created: ->
     @axis = []
     @theme = 'default'
+    @category ='category10'
 
   domReady: ->
     @data = (@createData(s) for s in @querySelectorAll 'grapp-graph-epoch-series')
