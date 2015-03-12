@@ -12,14 +12,14 @@ Description: A web component that displays Epoch graphs
 <link href="../polymer/polymer.html" rel="import">
 <link href="grapp-graph-epoch-series.html" rel="import">
 
-<polymer-element name="grapp-graph-epoch" attributes="type axis theme">
+<polymer-element name="grapp-graph-epoch" attributes="type axis theme width height">
 
   <template>
 
     <link rel="stylesheet" type="text/css" href="../epoch/epoch.min.css">
 
     <div class="epoch-theme-{{theme}}">
-      <div id="graph" class="epoch category10"></div>
+      <div id="graph" class="epoch category10" style="width: {{width}}; height: {{height}}"></div>
     </div>
 
   </template>
@@ -33,7 +33,9 @@ Description: A web component that displays Epoch graphs
   Polymer('grapp-graph-epoch', {
     created: function() {
       this.axis = [];
-      return this.theme = 'default';
+      this.theme = 'default';
+      this.width = "320px";
+      return this.height = "160px";
     },
     ready: function() {
       var s;

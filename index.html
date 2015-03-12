@@ -28,14 +28,7 @@
 
   <h2>Demo</h2>
 
-  <style>
-    grapp-graph-epoch /deep/ #graph {
-      width: 800px;
-      height: 300px;
-    }
-  </style>
-
-  <grapp-graph-epoch type="area" axis="left,right,bottom">
+  <grapp-graph-epoch type="area" axis="left,right,bottom" width="800px" height="300px">
     <grapp-graph-epoch-series label="Layer 1"
       data="[ {'x': 0, 'y': 0}, {'x': 1, 'y': 1}, {'x': 2, 'y': 2} ]">
     </grapp-graph-epoch-series>
@@ -44,7 +37,7 @@
     </grapp-graph-epoch-series>
   </grapp-graph-epoch>
 
-  <grapp-graph-epoch id="timegraph" type="time.area" axis="left,bottom">
+  <grapp-graph-epoch id="timegraph" type="time.area" axis="left,bottom" width="800px" height="300px">
     <grapp-graph-epoch-series label="Time Series 1"
       data="[ {'time': 1370044800, 'y': 1}, {'time': 1370044801, 'y': 10} ]">
     </grapp-graph-epoch-series>

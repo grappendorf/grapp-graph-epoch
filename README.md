@@ -28,6 +28,20 @@ Attributes
 
   Select one of the two Epoch CSS themes.
 
+* **width**
+
+  - *type:* CSS width
+  - *default:* 320px
+
+  Defines the graph width.
+
+* **height**
+
+  - *type:* CSS height
+  - *default:* 160px
+
+  Defines the graph height.
+
 
 Methods
 -------
