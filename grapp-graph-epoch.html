@@ -19,7 +19,7 @@ Description: A web component that displays Epoch graphs
     <link rel="stylesheet" type="text/css" href="../epoch/epoch.min.css">
 
     <div class="epoch-theme-{{theme}}">
-      <div id="graph" class="epoch category10" style="width: {{width}}; height: {{height}}"></div>
+      <div id="graph" class="epoch category10"></div>
     </div>
 
   </template>
@@ -33,9 +33,7 @@ Description: A web component that displays Epoch graphs
   Polymer('grapp-graph-epoch', {
     created: function() {
       this.axis = [];
-      this.theme = 'default';
-      this.width = "320px";
-      return this.height = "160px";
+      return this.theme = 'default';
     },
     ready: function() {
       var s;
@@ -66,14 +64,37 @@ Description: A web component that displays Epoch graphs
       options = {
         el: this.$.graph,
         data: this.data,
-        axes: this.axis
+        axes: this.axis,
+        width: this.width,
+        height: this.height
       };
       this.graph = new Epoch._typeMap[this.type](options);
       return this.graph.draw();
     },
     push: function() {
-      var args;
+      var args, d;
       args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+      if (typeof args[0] === 'number') {
+        return this.graph.push([
+          {
+            time: args[0],
+            y: args[1]
+          }
+        ]);
+      } else {
+        return this.graph.push((function() {
+          var i, len, results;
+          results = [];
+          for (i = 0, len = args.length; i < len; i++) {
+            d = args[i];
+            results.push({
+              time: d[0],
+              y: d[1]
+            });
+          }
+          return results;
+        })());
+      }
     }
   });
 

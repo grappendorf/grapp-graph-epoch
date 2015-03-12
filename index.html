@@ -28,7 +28,7 @@
 
   <h2>Demo</h2>
 
-  <grapp-graph-epoch type="area" axis="left,right,bottom" width="800px" height="300px">
+  <grapp-graph-epoch type="area" axis="left,right,bottom" width="800" height="300">
     <grapp-graph-epoch-series label="Layer 1"
       data="[ {'x': 0, 'y': 0}, {'x': 1, 'y': 1}, {'x': 2, 'y': 2} ]">
     </grapp-graph-epoch-series>
@@ -37,19 +37,15 @@
     </grapp-graph-epoch-series>
   </grapp-graph-epoch>
 
-  <grapp-graph-epoch id="timegraph" type="time.area" axis="left,bottom" width="800px" height="300px">
+  <grapp-graph-epoch id="timegraph" type="time.bar" axis="left,bottom" width="800" height="300">
     <grapp-graph-epoch-series label="Time Series 1"
       data="[ {'time': 1370044800, 'y': 1}, {'time': 1370044801, 'y': 10} ]">
-    </grapp-graph-epoch-series>
-    <grapp-graph-epoch-series label="Time Series 2"
-      data="[ {'time': 1370044800, 'y': 4}, {'time': 1370044801, 'y': 22} ]">
     </grapp-graph-epoch-series>
   </grapp-graph-epoch>
 
   <script>
     updateTimeSeries = function() {
-      document.querySelector('#timegraph').push([[(new Date()).getTime()/1000,
-        Math.random()*100]]);
+      document.querySelector('#timegraph').push((new Date()).getTime()/1000, Math.random()*100);
       setTimeout(updateTimeSeries, 2000);
     }
     window.addEventListener('polymer-ready', function() {

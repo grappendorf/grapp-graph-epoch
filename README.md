@@ -30,15 +30,15 @@ Attributes
 
 * **width**
 
-  - *type:* CSS width
-  - *default:* 320px
+  - *type:* Width in pixel
+  - *default:* Automatically calculated
 
   Defines the graph width.
 
 * **height**
 
-  - *type:* CSS height
-  - *default:* 160px
+  - *type:* Height in pixel
+  - *default:* Automatically calculated
 
   Defines the graph height.
 
