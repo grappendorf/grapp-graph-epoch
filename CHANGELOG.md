@@ -1,3 +1,17 @@
+<a name="0.0.6"></a>
+### 0.0.6 (2015-03-12)
+
+
+#### Bug Fixes
+
+* Epoch graph creation must be performed in domReady() ([a8ee99b9](http://github.com/grappendorf/grapp-graph-epoch/commit/a8ee99b93b75150de8740f9ed90a4f4238fb3a6b))
+
+
+#### Features
+
+* Add a 'category' attribute for specifying the D3 categorical color set ([1e7b321c](http://github.com/grappendorf/grapp-graph-epoch/commit/1e7b321c97f6183679cc39fb6125c648aa4d3548))
+
+
 <a name="0.0.5"></a>
 ### 0.0.5 (2015-03-12)
 
