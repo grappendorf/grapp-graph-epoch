@@ -12,7 +12,7 @@ Description: A web component that displays Epoch graphs
 <link href="../polymer/polymer.html" rel="import">
 <link href="grapp-graph-epoch-series.html" rel="import">
 
-<polymer-element name="grapp-graph-epoch" attributes="type axis theme category width height">
+<polymer-element name="grapp-graph-epoch" attributes="type axis theme category width height ticks tickSize tickOffset windowSize historySize queueSize margins domain range">
 
   <template>
 
@@ -28,7 +28,39 @@ Description: A web component that displays Epoch graphs
   <script src="../epoch/epoch.min.js"></script>
 
 <script type="text/javascript">(function() {
-  var slice = [].slice;
+  var convertStringToArray, convertStringToObject,
+    slice = [].slice;
+
+  convertStringToArray = function(s) {
+    var i, len, n, ref, results;
+    ref = s.split(',');
+    results = [];
+    for (i = 0, len = ref.length; i < len; i++) {
+      n = ref[i];
+      results.push(parseInt(n));
+    }
+    return results;
+  };
+
+  convertStringToObject = function(s) {
+    var i, kv, len, o, part, ref;
+    o = {};
+    ref = (function() {
+      var j, len, ref, results;
+      ref = s.split(',');
+      results = [];
+      for (j = 0, len = ref.length; j < len; j++) {
+        part = ref[j];
+        results.push(part.split(':'));
+      }
+      return results;
+    })();
+    for (i = 0, len = ref.length; i < len; i++) {
+      kv = ref[i];
+      o[kv[0]] = parseInt(kv[1]);
+    }
+    return o;
+  };
 
   Polymer('grapp-graph-epoch', {
     created: function() {
@@ -64,12 +96,24 @@ Description: A web component that displays Epoch graphs
     draw: function() {
       var options;
       this.$.graph.innerHTML = '';
+      if (this.margins) {
+        console.log(convertStringToObject(this.margins));
+      }
       options = {
         el: this.$.graph,
         data: this.data,
         axes: this.axis,
         width: this.width,
-        height: this.height
+        height: this.height,
+        ticks: this.ticks ? convertStringToObject(this.ticks) : void 0,
+        tickSize: this.tickSize,
+        tickOffset: this.tickOffset,
+        windowSize: this.windowSize,
+        historySize: this.historySize,
+        queueSize: this.queueSize,
+        margins: this.margins ? convertStringToObject(this.margins) : void 0,
+        domain: this.domain != null ? convertStringToArray(this.domain) : void 0,
+        range: this.range != null ? convertStringToArray(this.range) : void 0
       };
       this.graph = new Epoch._typeMap[this.type](options);
       return this.graph.draw();

@@ -1,3 +1,13 @@
+convertStringToArray = (s) ->
+  (parseInt(n) for n in s.split ',')
+
+convertStringToObject = (s) ->
+  o = {}
+  for kv in (part.split ':' for part in s.split ',')
+    o[kv[0]] = parseInt(kv[1])
+  o
+
+
 Polymer 'grapp-graph-epoch',
 
   created: ->
@@ -18,12 +28,22 @@ Polymer 'grapp-graph-epoch',
 
   draw: ->
     @$.graph.innerHTML = ''
+    console.log convertStringToObject @margins if @margins
     options =
       el: @$.graph
       data: @data
       axes: @axis
       width: @width
       height: @height
+      ticks: convertStringToObject @ticks if @ticks
+      tickSize: @tickSize
+      tickOffset: @tickOffset
+      windowSize: @windowSize
+      historySize: @historySize
+      queueSize: @queueSize
+      margins: convertStringToObject @margins if @margins
+      domain: convertStringToArray @domain if @domain?
+      range: convertStringToArray @range if @range?
     @graph = new Epoch._typeMap[@type] options
     @graph.draw()
 
