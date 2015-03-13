@@ -1,3 +1,17 @@
+<a name="0.0.7"></a>
+### 0.0.7 (2015-03-13)
+
+
+#### Bug Fixes
+
+* Use setIntervall() instead of setTimeout() ([bf95e2d7](http://github.com/grappendorf/grapp-graph-epoch/commit/bf95e2d763d7041e50648ca854748f83094fb1ca))
+
+
+#### Features
+
+* Add some more attributes ([173ca52d](http://github.com/grappendorf/grapp-graph-epoch/commit/173ca52def3348990dedb1fc6784565891a5a8d6))
+
+
 <a name="0.0.6"></a>
 ### 0.0.6 (2015-03-12)
 
