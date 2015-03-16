@@ -1,3 +1,12 @@
+<a name="0.0.8"></a>
+### 0.0.8 (2015-03-16)
+
+
+#### Features
+
+* Update the graph when series data has changed ([86549946](http://github.com/grappendorf/grapp-graph-epoch/commit/8654994630804e94cbe94f5dfc22ccb4198427a4))
+
+
 <a name="0.0.7"></a>
 ### 0.0.7 (2015-03-13)
 
