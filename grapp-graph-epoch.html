@@ -69,6 +69,17 @@ Description: A web component that displays Epoch graphs
       return this.category = 'category10';
     },
     domReady: function() {
+      var i, len, ref, s;
+      ref = this.querySelectorAll('grapp-graph-epoch-series');
+      for (i = 0, len = ref.length; i < len; i++) {
+        s = ref[i];
+        (new PathObserver(s, 'data')).open((function() {
+          return this.createGraph();
+        }).bind(this));
+      }
+      return this.createGraph();
+    },
+    createGraph: function() {
       var s;
       this.data = (function() {
         var i, len, ref, results;
@@ -76,17 +87,14 @@ Description: A web component that displays Epoch graphs
         results = [];
         for (i = 0, len = ref.length; i < len; i++) {
           s = ref[i];
-          results.push(this.createData(s));
+          results.push({
+            label: s.label,
+            values: s.data
+          });
         }
         return results;
       }).call(this);
       return this.draw();
-    },
-    createData: function(series) {
-      return {
-        label: series.label,
-        values: series.data
-      };
     },
     axisChanged: function() {
       if (this.graph) {

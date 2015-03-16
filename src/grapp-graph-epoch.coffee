@@ -16,11 +16,14 @@ Polymer 'grapp-graph-epoch',
     @category ='category10'
 
   domReady: ->
-    @data = (@createData(s) for s in @querySelectorAll 'grapp-graph-epoch-series')
-    @draw()
+    for s in @querySelectorAll 'grapp-graph-epoch-series'
+      (new PathObserver s, 'data').open (->
+        @createGraph()).bind @
+    @createGraph()
 
-  createData: (series) ->
-    { label: series.label, values: series.data }
+  createGraph: ->
+    @data = ({ label: s.label, values: s.data } for s in @querySelectorAll 'grapp-graph-epoch-series')
+    @draw()
 
   axisChanged: ->
     if @graph
