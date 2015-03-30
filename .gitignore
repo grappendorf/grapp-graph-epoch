@@ -2,5 +2,7 @@ build
 lib
 node_modules
 tmp
-*.sublime-workspace
+*.sublime-*
 *.log
+.idea
+
