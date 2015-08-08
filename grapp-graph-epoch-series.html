@@ -11,16 +11,23 @@ Description: A web component that displays Epoch graphs
 
 <link href="../polymer/polymer.html" rel="import">
 
-<polymer-element name="grapp-graph-epoch-series" attributes="label data">
+<dom-module id="grapp-graph-epoch-series">
 
 <script type="text/javascript">(function() {
-  Polymer('grapp-graph-epoch-series', {
-    created: function() {
-      return this.data = [];
+  Polymer({
+    is: 'grapp-graph-epoch-series',
+    properties: {
+      label: {
+        type: String
+      },
+      data: {
+        type: Array,
+        value: []
+      }
     }
   });
 
 }).call(this);
 </script>
 
-</polymer-element>
+</dom-module>

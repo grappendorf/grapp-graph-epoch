@@ -12,14 +12,14 @@ Description: A web component that displays Epoch graphs
 <link href="../polymer/polymer.html" rel="import">
 <link href="grapp-graph-epoch-series.html" rel="import">
 
-<polymer-element name="grapp-graph-epoch" attributes="type axis theme category width height ticks tickSize tickOffset windowSize historySize queueSize margins domain range">
+<dom-module id="grapp-graph-epoch">
+
+  <link rel="stylesheet" href="../epoch/epoch.min.css">
 
   <template>
 
-    <link rel="stylesheet" type="text/css" href="../epoch/epoch.min.css">
-
-    <div class="epoch-theme-{{theme}}">
-      <div id="graph" class="epoch {{category}}"></div>
+    <div class$=[[_epochThemeClass(theme)]]">
+      <div id="graph" class$="[[_epochGraphClass(category)]]"></div>
     </div>
 
   </template>
@@ -28,85 +28,68 @@ Description: A web component that displays Epoch graphs
   <script src="../epoch/epoch.min.js"></script>
 
 <script type="text/javascript">(function() {
-  var convertStringToArray, convertStringToObject,
-    slice = [].slice;
+  var slice = [].slice;
 
-  convertStringToArray = function(s) {
-    var i, len, n, ref, results;
-    ref = s.split(',');
-    results = [];
-    for (i = 0, len = ref.length; i < len; i++) {
-      n = ref[i];
-      results.push(parseInt(n));
-    }
-    return results;
-  };
-
-  convertStringToObject = function(s) {
-    var i, kv, len, o, part, ref;
-    o = {};
-    ref = (function() {
-      var j, len, ref, results;
-      ref = s.split(',');
-      results = [];
-      for (j = 0, len = ref.length; j < len; j++) {
-        part = ref[j];
-        results.push(part.split(':'));
+  Polymer({
+    is: 'grapp-graph-epoch',
+    properties: {
+      type: {
+        type: String
+      },
+      axis: {
+        type: String,
+        observer: '_axisChanged'
+      },
+      theme: {
+        type: String,
+        value: 'default'
+      },
+      category: {
+        type: String,
+        value: 'category10'
+      },
+      width: {
+        type: Number
+      },
+      height: {
+        type: Number
+      },
+      ticks: {
+        type: String
+      },
+      tickSize: {
+        type: Number
+      },
+      tickOffset: {
+        type: Number
+      },
+      windowSize: {
+        type: Number
+      },
+      historySize: {
+        type: Number
+      },
+      queueSize: {
+        type: Number
+      },
+      margins: {
+        type: String
+      },
+      domain: {
+        type: String
+      },
+      range: {
+        type: String
       }
-      return results;
-    })();
-    for (i = 0, len = ref.length; i < len; i++) {
-      kv = ref[i];
-      o[kv[0]] = parseInt(kv[1]);
-    }
-    return o;
-  };
-
-  Polymer('grapp-graph-epoch', {
-    created: function() {
-      this.axis = [];
-      this.theme = 'default';
-      return this.category = 'category10';
     },
-    domReady: function() {
-      var i, len, ref, s;
-      ref = this.querySelectorAll('grapp-graph-epoch-series');
-      for (i = 0, len = ref.length; i < len; i++) {
-        s = ref[i];
-        (new PathObserver(s, 'data')).open((function() {
-          return this.createGraph();
-        }).bind(this));
-      }
-      return this.createGraph();
-    },
-    createGraph: function() {
-      var s;
-      this.data = (function() {
-        var i, len, ref, results;
-        ref = this.querySelectorAll('grapp-graph-epoch-series');
-        results = [];
-        for (i = 0, len = ref.length; i < len; i++) {
-          s = ref[i];
-          results.push({
-            label: s.label,
-            values: s.data
-          });
-        }
-        return results;
-      }).call(this);
-      return this.draw();
-    },
-    axisChanged: function() {
-      if (this.graph) {
-        return this.graph.option('axis', this.axis);
+    attached: function() {
+      if (this.type) {
+        return this._createGraph();
       }
     },
     draw: function() {
       var options;
       this.$.graph.innerHTML = '';
-      if (this.margins) {
-        console.log(convertStringToObject(this.margins));
-      }
       options = {
         el: this.$.graph,
         data: this.data,
@@ -164,10 +147,67 @@ Description: A web component that displays Epoch graphs
         ];
       }
       return this.draw();
+    },
+    _createGraph: function() {
+      var s;
+      this.data = (function() {
+        var i, len, ref, results;
+        ref = Polymer.dom(this).querySelectorAll('grapp-graph-epoch-series');
+        results = [];
+        for (i = 0, len = ref.length; i < len; i++) {
+          s = ref[i];
+          results.push({
+            label: s.label,
+            values: s.data
+          });
+        }
+        return results;
+      }).call(this);
+      return this.draw();
+    },
+    _axisChanged: function() {
+      if (this.graph) {
+        return this.graph.option('axis', this.axis);
+      }
+    },
+    _convertStringToArray: function(s) {
+      var i, len, n, ref, results;
+      ref = s.split(',');
+      results = [];
+      for (i = 0, len = ref.length; i < len; i++) {
+        n = ref[i];
+        results.push(parseInt(n));
+      }
+      return results;
+    },
+    _convertStringToObject: function(s) {
+      var i, kv, len, o, part, ref;
+      o = {};
+      ref = (function() {
+        var j, len, ref, results;
+        ref = s.split(',');
+        results = [];
+        for (j = 0, len = ref.length; j < len; j++) {
+          part = ref[j];
+          results.push(part.split(':'));
+        }
+        return results;
+      })();
+      for (i = 0, len = ref.length; i < len; i++) {
+        kv = ref[i];
+        o[kv[0]] = parseInt(kv[1]);
+      }
+      return o;
+    },
+    _epochThemeClass: function(theme) {
+      return "epoch-theme-" + theme;
+    },
+    _epochGraphClass: function(category) {
+      return "epoch " + category;
     }
   });
 
 }).call(this);
 </script>
 
-</polymer-element>
+</dom-module>

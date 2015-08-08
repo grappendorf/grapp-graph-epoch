@@ -31,13 +31,13 @@
     "url": "git://github.com/grappendorf/grapp-graph-epoch.git"
   },
   "dependencies": {
-    "polymer": "Polymer/polymer#0.5.4",
+    "polymer": "Polymer/polymer#~1.0.0",
     "epoch": "0.6.0",
     "d3": "3.5.5"
   },
   "devDependencies": {
-    "coffee-script": "latest",
-    "jquery": "latest",
-    "web-component-tester": "Polymer/web-component-tester#latest"
+    "web-component-tester": "Polymer/web-component-tester#3.1.7",
+    "jquery": "2.1.4",
+    "coffee-script": "1.9.3"
   }
 }

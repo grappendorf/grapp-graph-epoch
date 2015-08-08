@@ -1,13 +1,5 @@
 module.exports = function(grunt) {
 
-  var mapDotDotUrlToLib = function(req, res, next) {
-    var url_parts = req.url.split('/');
-    if (url_parts.length > 2 && ['lib', 'test'].indexOf(url_parts[1]) == -1) {
-      req.url = '/lib' + req.url;
-    }
-    return next();
-  };
-
   grunt.initConfig({
     pkg: grunt.file.readJSON('bower.json'),
 
@@ -23,7 +15,7 @@ module.exports = function(grunt) {
 
     copy: {
       options: {
-        processContent: function (content, srcpath) {
+        processContent: function(content, srcpath) {
           return grunt.template.process(content);
         }
       },
@@ -46,7 +38,7 @@ module.exports = function(grunt) {
     coffeelint: {
       src: ['src/*.coffee'],
       options: {
-        max_line_length: { level: 'ignore' }
+        max_line_length: {level: 'ignore'}
       }
     },
 
@@ -63,7 +55,7 @@ module.exports = function(grunt) {
     htmlbuild: {
       dist: {
         src: 'src/*.html',
-        dest: './',
+        dest: './build/',
         options: {
           scripts: {
             dist_epoch: ['build/grapp-graph-epoch.js'],
@@ -79,17 +71,22 @@ module.exports = function(grunt) {
       }
     },
 
-    connect: {
-      server: {
-        options: {
-          port: 8080,
-          base: '.',
-          middleware: function(connect, options, middlewares) {
-            middlewares.unshift(mapDotDotUrlToLib);
-            return middlewares;
-          }
-        }
+    replace: {
+      dist: {
+        src: 'build/*.html',
+        dest: './',
+        replacements: [{
+          from: /href="..\/lib\/([^"]+)"/g,
+          to: 'href="../$1"'
+        }, {
+          from: /script src="..\/lib\/([^"]+)"/g,
+          to: 'script src="../$1"'
+        }]
       }
+    },
+
+    connect: {
+      server: {}
     },
 
     watch: {
@@ -120,16 +117,21 @@ module.exports = function(grunt) {
         updateConfigs: ['pkg'],
         commit: true,
         commitFiles: ['-a'],
-        commitMessage:'Bump version number to %VERSION%',
+        commitMessage: 'Bump version number to %VERSION%',
         createTag: true,
         tagName: '%VERSION%',
-        tagMessage:'Version %VERSION%',
+        tagMessage: 'Version %VERSION%',
         push: false
       }
     },
 
     changelog: {
-      options: {
+      options: {}
+    },
+
+    shell: {
+      test: {
+        command: 'xvfb-run -a ./bin/grunt wct-test'
       }
     }
   });
@@ -144,9 +146,33 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-conventional-changelog');
   grunt.loadNpmTasks('grunt-html-build');
+  grunt.loadNpmTasks('grunt-shell');
+  grunt.loadNpmTasks('grunt-text-replace');
 
   grunt.registerTask('build', 'Compile all assets and create the distribution files',
-    ['less', 'coffeelint', 'coffee', 'htmlbuild']);
+      ['less', 'coffeelint', 'coffee', 'htmlbuild', 'replace']);
+
+  grunt.registerTask('wct-test', function() {
+    var
+        done = this.async(),
+        wct = require('web-component-tester'),
+        options = {
+          remote: false,
+          persistent: false,
+          root: '.',
+          plugins: {
+            local: {
+              browsers: ['chrome']
+            }
+          }
+        };
+    wct.test(options, function() {
+      done();
+      process.exit(0);
+    });
+  });
+
+  grunt.registerTask('test', 'Test the web application', ['shell:test']);
 
   grunt.task.renameTask('bump', 'bumpversion');
 
@@ -157,6 +183,6 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('default', 'Build the software, start a web server and watch for changes',
-    ['build', 'connect', 'watch']
+      ['build', 'connect', 'watch']
   );
 };

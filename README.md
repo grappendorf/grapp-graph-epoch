@@ -5,126 +5,143 @@ A web component that displays [Epoch graphs](https://github.com/fastly/epoch).
 For more information about how the graphs are actually displayed and the details of the
 web comonent attributes, please refer to the [Epoch documentation](http://fastly.github.io/epoch/).
 
+Compatible with Polymer 1.0+
 
-Attributes
+
+Properties
 ----------
 
-* **type**
+  * **type**
 
-  - *type:* (time.)? area|bar|gauge|heatmap|line
-  - *default:* undefined
+    - *type:* (time.)? area|bar|gauge|heatmap|line
+    - *default:* undefined
 
-  Specify the Epoch graph type.
+    Specify the Epoch graph type.
+    
 
-* **axis**
+  * **axis**
 
-  - *type:* (left|bottom|right|top)*
-  - *default:* left,buttom
+    - *type:* (left|bottom|right|top)*
+    - *default:* left,buttom
 
-  Specify which axes should be printed.
+    Specify which axes should be printed.
+    
 
-* **theme**
+  * **theme**
 
-  - *type:* default|dark
-  - *default:* default
+    - *type:* default|dark
+    - *default:* default
 
-  Select one of the two Epoch CSS themes.
+    Select one of the two Epoch CSS themes.
+    
 
-* **category**
+  * **category**
 
-  - *type:* category10|category20|category20b|category20c
-  - *default:* category10
+    - *type:* category10|category20|category20b|category20c
+    - *default:* category10
 
-  Select one of the four D3 categorical color sets.
+    Select one of the four D3 categorical color sets.
+    
 
-* **width**
+  * **width**
 
-  - *type:* Width in pixel
-  - *default:* Automatically calculated
+    - *type:* Width in pixel
+    - *default:* Automatically calculated
 
-  Defines the graph width.
+    Defines the graph width.
 
-* **height**
 
-  - *type:* Height in pixel
-  - *default:* Automatically calculated
+  * **height**
 
-  Defines the graph height.
+    - *type:* Height in pixel
+    - *default:* Automatically calculated
 
-* **ticks**
+    Defines the graph height.
 
-  - *type:* List of name:number pairs
-  - *default:* Epoch default
 
-  Number of ticks to display on each axis, for example `ticks="left:10,bottom:20"`
+  * **ticks**
 
-* **tickSize**
+    - *type:* List of name:number pairs
+    - *default:* Epoch default
 
-  - *type:* Number
-  - *default:* Epoch default
+    Number of ticks to display on each axis, for example `ticks="left:10,bottom:20"`
 
-  Size in pixels for each tick (for gauge chart).
 
-* **tickOffset**
+  * **tickSize**
 
-  - *type:* Number
-  - *default:* Epoch default
+    - *type:* Number
+    - *default:* Epoch default
 
-  Number of pixels to offset ticks by from the outter arc of the gauge (for gauge charts).
+    Size in pixels for each tick (for gauge chart).
 
-* **windowSize**
 
-  - *type:* Number
-  - *default:* Epoch default
+  * **tickOffset**
 
-  Number of entries to display in the graph (for real-time-charts).
+    - *type:* Number
+    - *default:* Epoch default
 
-* **historySize**
+    Number of pixels to offset ticks by from the outter arc of the gauge (for gauge charts).
 
-  - *type:* Number
-  - *default:* Epoch default
 
-  Maximum number of historical entries to track in the chart (for real-time-charts).
+  * **windowSize**
 
-* **queueSize**
+    - *type:* Number
+    - *default:* Epoch default
 
-  - *type:* Number
-  - *default:* Epoch default
+    Number of entries to display in the graph (for real-time-charts).
 
-  Number of entries to keep in working memory while the chart is not animating transitions (for real-time-charts).
 
-* **margins**
+  * **historySize**
 
-  - *type:* List of name:number pairs
-  - *default:* Epoch default
+    - *type:* Number
+    - *default:* Epoch default
 
-  Explicit margin overrides for the chart, for example `maargins="left:10,bottom:20"`
+    Maximum number of historical entries to track in the chart (for real-time-charts).
 
-* **domain**
 
-  - *type:* min,max pair
-  - *default:* Automatically calcualted
+  * **queueSize**
 
-  Set an explicit domain for the chart.
+    - *type:* Number
+    - *default:* Epoch default
 
-* **range**
+    Number of entries to keep in working memory while the chart is not animating transitions (for real-time-charts).
 
-  - *type:* min,max pair
-  - *default:* Automatically calcualted
 
-  Set an explicit range for the chart.
+  * **margins**
+
+    - *type:* List of name:number pairs
+    - *default:* Epoch default
+
+    Explicit margin overrides for the chart, for example `maargins="left:10,bottom:20"`
+
+
+  * **domain**
+
+    - *type:* min,max pair
+    - *default:* Automatically calcualted
+
+    Set an explicit domain for the chart.
+
+
+  * **range**
+
+    - *type:* min,max pair
+    - *default:* Automatically calcualted
+
+    Set an explicit range for the chart.
 
 
 Methods
 -------
 
-* **push(time, value)**
+  * **push(time, value)**
 
-  Push a new value into a data series.
+    Push a new value into a data series.
 
-* **clear()**
 
-  Clear a time series graph.
+  * **clear()**
+
+    Clear a time series graph.
 
 
 grapp-graph-epoch-series
@@ -132,17 +149,19 @@ grapp-graph-epoch-series
 
 Defines a single data series inside an grapp-graph-epoch.
 
-Attributes
+
+Properties
 ----------
 
-* **label**
+  * **label**
 
-  - *type:* String
-  - *default:* ''
+    - *type:* String
+    - *default:* ''
 
-  The series label
+    The series label
 
-* **data**
 
-  - *type:* Array of {x:, y:} pairs
-  - *default:* undefined
+  * **data**
+
+    - *type:* Array of {x:, y:} pairs
+    - *default:* undefined

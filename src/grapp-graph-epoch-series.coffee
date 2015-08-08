@@ -1,4 +1,7 @@
-Polymer 'grapp-graph-epoch-series',
+Polymer
 
-  created: ->
-    @data = []
+  is: 'grapp-graph-epoch-series'
+
+  properties:
+    label: {type: String}
+    data: {type: Array, value: []}
