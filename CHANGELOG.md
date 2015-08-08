@@ -1,3 +1,12 @@
+<a name="0.1.0"></a>
+## 0.1.0 (2015-08-08)
+
+
+#### Features
+
+* Upgrade to Polymer 1.0 ([7621462f](http://github.com/grappendorf/grapp-graph-epoch/commit/7621462f63ba47ef5169535a17b8644242f338d6))
+
+
 <a name="0.0.8"></a>
 ### 0.0.8 (2015-03-16)
 
