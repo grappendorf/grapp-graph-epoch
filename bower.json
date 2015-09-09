@@ -1,7 +1,7 @@
 {
   "name": "grapp-graph-epoch",
   "description": "A web component that displays Epoch graphs",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "grapp-graph-epoch.html",
   "license": "MIT",
   "ignore": [
