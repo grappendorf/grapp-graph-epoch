@@ -1,3 +1,13 @@
+<a name="0.1.2"></a>
+### 0.1.2 (2015-09-18)
+
+
+#### Bug Fixes
+
+* improve Polymer 1.0 compatibility ([723bac76](http://github.com/grappendorf/grapp-graph-epoch/commit/723bac76e48b00f8d78e8b80991616b77bb415c4))
+* workaround: wct currently expects to find some bower components in the "componen ([382d8cf2](http://github.com/grappendorf/grapp-graph-epoch/commit/382d8cf298d505c1300dd9d5b6e77ae886fb4d8a))
+
+
 <a name="0.1.1"></a>
 ### 0.1.1 (2015-09-09)
 
