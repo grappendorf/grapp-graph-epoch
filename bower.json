@@ -38,6 +38,7 @@
   "devDependencies": {
     "coffee-script": "^1.10.0",
     "jquery": "^2.1.4",
-    "web-component-tester": "Polymer/web-component-tester#3.3.21"
+    "web-component-tester": "Polymer/web-component-tester#3.3.21",
+    "test-fixture": "PolymerElements/test-fixture#^1.0.0"
   }
 }
