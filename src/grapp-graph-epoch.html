@@ -7,12 +7,11 @@ Description: <%= pkg.description %>
 -->
 <!-- /build -->
 
-<link href="../lib/polymer/polymer.html" rel="import">
-<link href="grapp-graph-epoch-series.html" rel="import">
+<link rel="import" href="../lib/polymer/polymer.html">
+<link rel="import" href="grapp-graph-epoch-series.html">
+<link rel="stylesheet" href="../lib/epoch/epoch.min.css">
 
-<dom-module id="grapp-graph-epoch">
-
-  <link rel="stylesheet" href="../lib/epoch/epoch.min.css">
+ <dom-module id="grapp-graph-epoch">
 
   <template>
 
@@ -25,7 +24,7 @@ Description: <%= pkg.description %>
   <script src="../lib/d3/d3.min.js"></script>
   <script src="../lib/epoch/epoch.min.js"></script>
 
-  <!-- build:script inline dist_epoch -->
+  <!-- build:script inline grapp-graph-epoch -->
   <script src="grapp-graph-epoch.js"></script>
   <!-- /build -->
 

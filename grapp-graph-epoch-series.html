@@ -9,7 +9,7 @@ Description: A web component that displays Epoch graphs
 -->
 
 
-<link href="../polymer/polymer.html" rel="import">
+<link rel="import" href="../polymer/polymer.html">
 
 <dom-module id="grapp-graph-epoch-series">
 
@@ -22,7 +22,10 @@ Description: A web component that displays Epoch graphs
       },
       data: {
         type: Array,
-        value: []
+        notify: true,
+        value: function() {
+          return [];
+        }
       }
     }
   });

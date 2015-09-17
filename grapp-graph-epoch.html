@@ -9,12 +9,11 @@ Description: A web component that displays Epoch graphs
 -->
 
 
-<link href="../polymer/polymer.html" rel="import">
-<link href="grapp-graph-epoch-series.html" rel="import">
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="grapp-graph-epoch-series.html">
+<link rel="stylesheet" href="../epoch/epoch.min.css">
 
-<dom-module id="grapp-graph-epoch">
-
-  <link rel="stylesheet" href="../epoch/epoch.min.css">
+ <dom-module id="grapp-graph-epoch">
 
   <template>
 
@@ -41,8 +40,7 @@ Description: A web component that displays Epoch graphs
         observer: '_axisChanged'
       },
       theme: {
-        type: String,
-        value: 'default'
+        type: String
       },
       category: {
         type: String,
@@ -83,6 +81,16 @@ Description: A web component that displays Epoch graphs
       }
     },
     attached: function() {
+      var i, len, ref, s;
+      ref = Polymer.dom(this).querySelectorAll('grapp-graph-epoch-series');
+      for (i = 0, len = ref.length; i < len; i++) {
+        s = ref[i];
+        s.addEventListener('data-changed', (function(_this) {
+          return function() {
+            return _this._createGraph();
+          };
+        })(this));
+      }
       if (this.type) {
         return this._createGraph();
       }
@@ -200,7 +208,12 @@ Description: A web component that displays Epoch graphs
       return o;
     },
     _epochThemeClass: function(theme) {
-      return "epoch-theme-" + theme;
+      var obj, ref;
+      return (ref = theme != null) != null ? ref : (
+        obj = {},
+        obj["epoch-theme-" + theme] = '',
+        obj
+      );
     },
     _epochGraphClass: function(category) {
       return "epoch " + category;

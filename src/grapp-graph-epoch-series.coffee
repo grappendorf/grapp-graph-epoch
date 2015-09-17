@@ -4,4 +4,4 @@ Polymer
 
   properties:
     label: {type: String}
-    data: {type: Array, value: []}
+    data: {type: Array, notify: true, value: -> []}

@@ -5,7 +5,7 @@ Polymer
   properties:
     type: {type: String}
     axis: {type: String, observer: '_axisChanged'}
-    theme: {type: String, value: 'default'}
+    theme: {type: String}
     category: {type: String, value: 'category10'}
     width: {type: Number}
     height: {type: Number}
@@ -20,10 +20,9 @@ Polymer
     range: {type: String}
 
   attached: ->
-# TODO: Observe changes to series data
-#    for s in Polymer.dom(@).querySelectorAll 'grapp-graph-epoch-series'
-#      (new PathObserver s, 'data').open (->
-#        @_createGraph()).bind @
+    for s in Polymer.dom(@).querySelectorAll 'grapp-graph-epoch-series'
+      s.addEventListener('data-changed', =>
+        @_createGraph())
     @_createGraph() if @type
 
   draw: ->
@@ -75,7 +74,7 @@ Polymer
     o
 
   _epochThemeClass: (theme) ->
-    "epoch-theme-#{theme}"
+    theme? ? "epoch-theme-#{theme}" : ''
 
   _epochGraphClass: (category) ->
     "epoch #{category}"

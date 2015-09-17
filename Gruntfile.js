@@ -58,11 +58,10 @@ module.exports = function(grunt) {
         dest: './build/',
         options: {
           scripts: {
-            dist_epoch: ['build/grapp-graph-epoch.js'],
-            dist_epoch_series: ['build/grapp-graph-epoch-series.js']
+            'grapp-graph-epoch': ['build/grapp-graph-epoch.js'],
+            'grapp-graph-epoch-series': ['build/grapp-graph-epoch-series.js']
           },
           styles: {
-            dist: ['build/*.css']
           },
           data: {
             copyright: grunt.file.read('tmpl/copyright.tmpl')

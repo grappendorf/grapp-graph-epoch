@@ -4,7 +4,7 @@
 <head>
   <title>grapp-graph-epoch web component</title>
   <script src='lib/webcomponentsjs/webcomponents-lite.min.js'></script>
-  <link href="build/grapp-graph-epoch.html" rel="import">
+  <link rel="import" href="build/grapp-graph-epoch.html">
 </head>
 
 <body>
@@ -28,7 +28,7 @@
   <template id="template" is="dom-bind">
 
     <grapp-graph-epoch type="area" axis="left,right,bottom" width="800" height="300">
-      <grapp-graph-epoch-series label="Layer 1"
+      <grapp-graph-epoch-series id="series" label="Layer 1"
         data='[{"x":0,"y":0},{"x":1,"y":1},{"x":2,"y":2}]'>
       </grapp-graph-epoch-series>
       <grapp-graph-epoch-series label="Layer 2"
@@ -53,10 +53,14 @@
         t.$.timegraph.push((new Date()).getTime()/1000, Math.random()*100);
       }
     };
+    t.updateSeriesData= function() {
+      t.$.series.data = [{"x":0,"y":Math.random()*10},{"x":1,"y":Math.random()*10},{"x":2,"y":Math.random()*10}];
+    }
     t.clear = function() {
       t.$.timegraph.clear();
     };
     setInterval(t.updateTimeSeries, 2000);
+    setInterval(t.updateSeriesData, 3000);
   </script>
 
   <script src="//localhost:35729/livereload.js"></script>
